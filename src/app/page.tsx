@@ -137,17 +137,12 @@ export default function CryptoVCLanding() {
           <AnimatedText variant="fadeUp" delay={0.6} duration={0.8}>
             <div className="flex justify-center px-4 sm:px-6 mt-8">
               <motion.div 
-                className="bg-gray-900/50 border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-8 py-4 sm:py-6 backdrop-blur-sm w-full max-w-md sm:max-w-none sm:w-auto"
-                whileHover={{ 
-                  borderColor: "rgba(59, 130, 246, 0.3)",
-                  scale: 1.02 
-                }}
-                transition={{ duration: 0.3 }}
+                className="bg-gray-900/50 border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-12 py-4 sm:py-8 backdrop-blur-sm w-full max-w-md sm:max-w-2xl"
               >
                 <div className="text-center">
                   <div className="text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest text-white/60 mb-2 sm:mb-2">Investment Philosophy</div>
-                  <div className="text-base sm:text-lg md:text-xl font-medium text-white leading-relaxed px-2 sm:px-0">
-                    "Bitcoin is digital gold.<br className="hidden sm:inline" /><span className="sm:hidden"> </span>Blockchain is the future."
+                  <div className="text-base sm:text-lg md:text-xl font-normal text-white leading-relaxed px-2 sm:px-0">
+                    "Bitcoin is digital gold. Blockchain is the future."
                   </div>
                 </div>
               </motion.div>
@@ -299,8 +294,6 @@ export default function CryptoVCLanding() {
               <div className="relative mt-8 md:mt-0">
                 <motion.div 
                   className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 p-4 sm:p-6 md:p-8 rounded-2xl border border-gray-700"
-                  whileHover={{ scale: 1.02, borderColor: "rgba(59, 130, 246, 0.5)" }}
-                  transition={{ duration: 0.3 }}
                 >
                   <div className="space-y-3 sm:space-y-4">
                     <div className="flex justify-between items-center">
@@ -353,25 +346,12 @@ export default function CryptoVCLanding() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <motion.div 
-                  className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 sm:p-6 md:p-8 group cursor-pointer relative"
-                  whileHover={{ 
-                    scale: 1.02,
-                    borderColor: "rgba(59, 130, 246, 0.5)",
-                    y: -5
-                  }}
-                  transition={{ duration: 0.3 }}
+                  className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 sm:p-6 md:p-8 group relative"
                 >
                   {/* Logo floating above card - centered on mobile, left on desktop */}
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 sm:-top-6 sm:left-auto sm:transform-none sm:-left-6 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 z-50">
                     <motion.div
                       className="relative w-full h-full bg-black/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-1 sm:p-2 border border-gray-600/50 shadow-2xl"
-                      whileHover={{ 
-                        scale: 1.15, 
-                        rotate: 8,
-                        y: -4,
-                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8)"
-                      }}
-                      transition={{ duration: 0.3 }}
                       style={{
                         filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))"
                       }}
