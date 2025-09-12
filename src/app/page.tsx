@@ -112,13 +112,13 @@ export default function CryptoVCLanding() {
           </div>
         </motion.div>
 
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+        <div className="relative z-10 text-center sm:text-center w-full sm:max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight text-left sm:text-center px-4 sm:px-0">
               Blockchain is
               <br />
                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
@@ -128,7 +128,7 @@ export default function CryptoVCLanding() {
           </motion.div>
           
           <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
-             <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 max-w-3xl mx-auto px-4 sm:px-0">
+             <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-left sm:text-center max-w-none sm:max-w-3xl mx-0 sm:mx-auto px-4 sm:px-0">
               I believe wholeheartedly in Bitcoin and blockchain technology. 
               Investing in the decentralized revolution that will reshape our world.
             </p>
@@ -235,9 +235,9 @@ export default function CryptoVCLanding() {
           radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)
         `}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="w-full sm:max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <AnimatedText variant="fadeUp" delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 sm:mb-20">My Investment Approach</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left sm:text-center mb-12 sm:mb-20">My Investment Approach</h2>
           </AnimatedText>
           
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">

@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     title: "Dany Capital - Bitcoin & Blockchain Investment",
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
     images: ["/og-image.png"],
-    creator: "@danycapital",
-    site: "@danycapital",
+    creator: "@danyakmallun",
+    site: "@danyakmallun",
   },
   verification: {
     google: "google-site-verification-code-here",
@@ -89,20 +89,20 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Dany Capital",
-    url: "https://dany-capital.vercel.app", // Change to your actual website URL
-    logo: "https://dany-capital.vercel.app/og-image.png",
+    url: "https://capital.danyakmallu.com", // Change to your actual website URL
+    logo: "https://capital.danyakmallu.com/og-image.png",
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
     foundingDate: "2024",
     industry: "Financial Services",
     speciality: ["Bitcoin Investment", "Blockchain Technology", "Cryptocurrency", "Venture Capital"],
     sameAs: [
-      "https://twitter.com/danycapital",
-      "https://linkedin.com/company/dany-capital"
+      "https://twitter.com/danyakmallun",
+      "https://linkedin.com/in/danyakmallun"
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Investment Inquiries",
-      url: "https://dany-capital.vercel.app" // Change to your actual website URL
+      url: "https://capital.danyakmallu.com" // Change to your actual website URL
     }
   };
 
