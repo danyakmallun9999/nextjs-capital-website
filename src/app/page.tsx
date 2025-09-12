@@ -114,7 +114,7 @@ export default function CryptoVCLanding() {
 
         {/* Aurora Nebula Background */}
         <motion.div 
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          className="hidden sm:flex absolute inset-0 items-center justify-center pointer-events-none"
           style={{
             y: useTransform(springScrollProgress, [0, 1], [0, -80]),
             scale: useTransform(springScrollProgress, [0, 1], [1, 1.1]),
