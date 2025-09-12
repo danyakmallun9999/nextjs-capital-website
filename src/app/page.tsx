@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import ThreeBackground from './components/ThreeBackground';
 import { ParallaxSection } from './components/ParallaxSection';
@@ -142,7 +142,7 @@ export default function CryptoVCLanding() {
                 <div className="text-center">
                   <div className="text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest text-white/60 mb-2 sm:mb-2">Investment Philosophy</div>
                   <div className="text-base sm:text-lg md:text-xl font-normal text-white leading-relaxed px-2 sm:px-0">
-                    "Bitcoin is digital gold. Blockchain is the future."
+                    &ldquo;Bitcoin is digital gold. Blockchain is the future.&rdquo;
                   </div>
                 </div>
               </motion.div>

@@ -16,7 +16,6 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   className = '',
   variant = 'fadeUp',
   delay = 0,
-  duration = 0.6,
 }) => {
   // Get initial values based on variant
   const getInitialValues = () => {

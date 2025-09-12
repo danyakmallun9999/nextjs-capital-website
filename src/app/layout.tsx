@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Google_Sans_Code } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const googleSansCode = Google_Sans_Code({
-  weight: "400",
-  subsets: ["latin"],
+const googleSansCode = localFont({
+  src: "../../public/fonts/Google_Sans_Code/static/GoogleSansCode-Regular.ttf",
   variable: "--font-google-sans-code",
   display: "swap",
 });
