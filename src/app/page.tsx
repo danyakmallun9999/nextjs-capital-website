@@ -112,6 +112,114 @@ export default function CryptoVCLanding() {
           </div>
         </motion.div>
 
+        {/* Aurora Nebula Background */}
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{
+            y: useTransform(springScrollProgress, [0, 1], [0, -80]),
+            scale: useTransform(springScrollProgress, [0, 1], [1, 1.1]),
+          }}
+        >
+          <div className="relative w-[800px] h-[800px]">
+            {/* Aurora Nebula Layers */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={`aurora-${i}`}
+                className="absolute inset-0 rounded-full opacity-20"
+                animate={{
+                  scale: [0.8 + i * 0.1, 1.4 + i * 0.1, 0.8 + i * 0.1],
+                  rotate: [0, i % 2 === 0 ? 360 : -360],
+                  x: [0, Math.sin(i * 60) * 50, 0],
+                  y: [0, Math.cos(i * 60) * 30, 0],
+                }}
+                transition={{
+                  duration: 8 + i * 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.5,
+                }}
+                style={{
+                  background: i % 6 === 0 
+                    ? 'radial-gradient(ellipse at center, rgba(147, 51, 234, 0.4) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%)'
+                    : i % 6 === 1
+                    ? 'radial-gradient(ellipse at center, rgba(236, 72, 153, 0.4) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)'
+                    : i % 6 === 2
+                    ? 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.4) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%)'
+                    : i % 6 === 3
+                    ? 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.4) 0%, rgba(16, 185, 129, 0.2) 40%, transparent 70%)'
+                    : i % 6 === 4
+                    ? 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, rgba(236, 72, 153, 0.2) 40%, transparent 70%)'
+                    : 'radial-gradient(ellipse at center, rgba(34, 197, 94, 0.4) 0%, rgba(168, 85, 247, 0.2) 40%, transparent 70%)',
+                  filter: `blur(${2 + i}px) saturate(1.5)`,
+                }}
+              />
+            ))}
+            
+            {/* Additional Floating Aurora Particles */}
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute w-4 h-4 rounded-full opacity-60"
+                animate={{
+                  x: [
+                    Math.cos(i * 30) * 200,
+                    Math.cos(i * 30 + 180) * 300,
+                    Math.cos(i * 30) * 200,
+                  ],
+                  y: [
+                    Math.sin(i * 30) * 200,
+                    Math.sin(i * 30 + 180) * 300,
+                    Math.sin(i * 30) * 200,
+                  ],
+                  scale: [0.5, 1.2, 0.5],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 6 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.3,
+                }}
+                style={{
+                  background: i % 4 === 0 
+                    ? 'radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)'
+                    : i % 4 === 1
+                    ? 'radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)'
+                    : i % 4 === 2
+                    ? 'radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, transparent 70%)'
+                    : 'radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)',
+                  filter: `blur(1px)`,
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            ))}
+
+            {/* Central Aurora Core */}
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{
+                rotate: [0, 360],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <div 
+                className="w-96 h-96 rounded-full opacity-30"
+                style={{
+                  background: 'conic-gradient(from 0deg, rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.6), rgba(16, 185, 129, 0.6), rgba(236, 72, 153, 0.6), rgba(168, 85, 247, 0.6), rgba(147, 51, 234, 0.6))',
+                  filter: 'blur(3px)',
+                }}
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+
         <div className="relative z-10 text-center sm:text-center w-full sm:max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
