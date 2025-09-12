@@ -54,18 +54,10 @@ export const metadata: Metadata = {
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
     images: [
       {
-        url: "https://capital.danyakmallu.com/opengraph-image",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Dany Capital - Bitcoin & Blockchain Investment",
-        type: "image/png",
-      },
-      {
-        url: "https://capital.danyakmallu.com/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Dany Capital - Bitcoin & Blockchain Investment",
-        type: "image/png",
       }
     ],
   },
@@ -73,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dany Capital - Bitcoin & Blockchain Investment",
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
-    images: ["https://capital.danyakmallu.com/twitter-image"],
+    images: ["/twitter-image"],
     creator: "@danyakmallun",
     site: "@danyakmallun",
   },
@@ -124,26 +116,8 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        {/* Additional OpenGraph meta tags for better compatibility */}
-        <meta property="og:image" content="https://capital.danyakmallu.com/opengraph-image" />
-        <meta property="og:image:alt" content="Dany Capital - Bitcoin & Blockchain Investment" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
-        
-        {/* Twitter Card meta tags */}
-        <meta name="twitter:image" content="https://capital.danyakmallu.com/twitter-image" />
-        <meta name="twitter:image:alt" content="Dany Capital - Bitcoin & Blockchain Investment" />
-        
-        {/* WhatsApp specific meta tags */}
-        <meta property="og:image:secure_url" content="https://capital.danyakmallu.com/opengraph-image" />
-        
-        {/* Discord specific meta tags */}
         <meta name="theme-color" content="#3b82f6" />
-        <meta property="og:color" content="#3b82f6" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
         className={`${googleSansCode.variable} antialiased`}
