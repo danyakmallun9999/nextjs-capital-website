@@ -149,13 +149,11 @@ function ElegantGrid() {
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         
         return (
-          <line key={index} geometry={geometry}>
-            <lineBasicMaterial
-              color="#3b82f6"
-              transparent
-              opacity={0.15}
-            />
-          </line>
+          <primitive key={index} object={new THREE.Line(geometry, new THREE.LineBasicMaterial({
+            color: "#3b82f6",
+            transparent: true,
+            opacity: 0.15
+          }))} />
         );
       })}
     </group>
