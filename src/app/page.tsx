@@ -121,7 +121,7 @@ export default function CryptoVCLanding() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0">
               Blockchain is
               <br />
-               <span className="text-white">
+               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
                  the future.
                </span>
             </h1>
@@ -135,33 +135,21 @@ export default function CryptoVCLanding() {
           </AnimatedText>
           
           <AnimatedText variant="fadeUp" delay={0.6} duration={0.8}>
-            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center items-center px-4 sm:px-0 mt-4">
-              {/* Investment Stats */}
+            <div className="flex justify-center px-4 sm:px-6 mt-8">
               <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.02 }}
+                className="bg-gray-900/50 border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-8 py-4 sm:py-6 backdrop-blur-sm w-full max-w-md sm:max-w-none sm:w-auto"
+                whileHover={{ 
+                  borderColor: "rgba(59, 130, 246, 0.3)",
+                  scale: 1.02 
+                }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">4</div>
-                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Core Assets</div>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">10+</div>
-                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Years Horizon</div>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">100%</div>
-                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Conviction</div>
+                <div className="text-center">
+                  <div className="text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest text-white/60 mb-2 sm:mb-2">Investment Philosophy</div>
+                  <div className="text-base sm:text-lg md:text-xl font-medium text-white leading-relaxed px-2 sm:px-0">
+                    "Bitcoin is digital gold.<br className="hidden sm:inline" /><span className="sm:hidden"> </span>Blockchain is the future."
+                  </div>
+                </div>
               </motion.div>
             </div>
           </AnimatedText>
