@@ -9,7 +9,7 @@ const googleSansCode = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://capital.danyakmallu.com'),
+  metadataBase: new URL('https://capital.danyakmallun.com'),
   title: {
     default: "Dany Capital - Bitcoin & Blockchain Investment",
     template: "%s | Dany Capital"
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://capital.danyakmallu.com",
+    url: "https://capital.danyakmallun.com",
     siteName: "Dany Capital",
     title: "Dany Capital - Bitcoin & Blockchain Investment",
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     yandex: "yandex-verification-code-here",
   },
   alternates: {
-    canonical: "https://capital.danyakmallu.com", // Change to your actual website URL
+    canonical: "https://capital.danyakmallun.com", // Change to your actual website URL
       },
   category: "Finance",
 };
@@ -88,8 +88,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Dany Capital",
-    url: "https://capital.danyakmallu.com", // Change to your actual website URL
-    logo: "https://capital.danyakmallu.com/images/og-image.png",
+    url: "https://capital.danyakmallun.com", // Change to your actual website URL
+    logo: "https://capital.danyakmallun.com/images/og-image.png",
     description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
     foundingDate: "2024",
     industry: "Financial Services",
@@ -101,7 +101,7 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Investment Inquiries",
-      url: "https://capital.danyakmallu.com" // Change to your actual website URL
+      url: "https://capital.danyakmallun.com" // Change to your actual website URL
     }
   };
 
