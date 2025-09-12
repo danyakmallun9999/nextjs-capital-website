@@ -4,35 +4,25 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
 import Image from 'next/image';
-import { AnimatedBackground } from './components/AnimatedBackground';
+import ThreeBackground from './components/ThreeBackground';
 import { ParallaxSection } from './components/ParallaxSection';
 import { AnimatedText } from './components/AnimatedText';
 
 export default function CryptoVCLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isScrolled, setIsScrolled] = useState(false);
   
   const { scrollYProgress } = useScroll();
   const springScrollProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1
-      });
-    };
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
     
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -48,23 +38,23 @@ export default function CryptoVCLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-      <AnimatedBackground mousePosition={mousePosition} />
+      <ThreeBackground />
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 pt-4 transition-all duration-300 ${
+      <nav className={`fixed top-0 w-full z-50 pt-4 transition-all duration-300 border-b ${
         isScrolled 
-          ? 'bg-black/80 backdrop-blur-md border-b border-gray-800/50' 
-          : 'bg-transparent'
+          ? 'bg-black/80 backdrop-blur-md border-gray-800/50' 
+          : 'bg-transparent border-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full px-8 sm:px-12 lg:px-16 xl:px-20">
           <div className="flex items-center justify-between h-20">
-            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <div className="text-3xl font-bold text-white">
               Dany Capital
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">About</a>
-              <a href="#investment" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">Investment</a>
-              <a href="#portfolio" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">Portfolio</a>
+              <a href="#about" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Philosophy</a>
+              <a href="#investment" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Investment</a>
+              <a href="#portfolio" className="text-lg text-white hover:text-white transition-colors smooth-scroll">My Holdings</a>
             </div>
 
             <button 
@@ -80,9 +70,9 @@ export default function CryptoVCLanding() {
         {isMenuOpen && (
           <div className="md:hidden bg-black/90 backdrop-blur-md border-b border-gray-800/50">
             <div className="px-6 py-6 space-y-6">
-              <a href="#about" className="block text-lg hover:text-blue-400 smooth-scroll">About</a>
-              <a href="#investment" className="block text-lg hover:text-blue-400 smooth-scroll">Investment</a>
-              <a href="#portfolio" className="block text-lg hover:text-blue-400 smooth-scroll">Portfolio</a>
+               <a href="#about" className="block text-lg text-white hover:text-white smooth-scroll">About</a>
+               <a href="#investment" className="block text-lg text-white hover:text-white smooth-scroll">Investment</a>
+               <a href="#portfolio" className="block text-lg text-white hover:text-white smooth-scroll">Portfolio</a>
             </div>
         </div>
         )}
@@ -102,7 +92,7 @@ export default function CryptoVCLanding() {
             {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute inset-0 border border-white/10 rounded-full"
+                className="absolute inset-0 border rounded-full"
                 animate={{
                   scale: [1 + i * 0.15, 1.2 + i * 0.15, 1 + i * 0.15],
                   rotate: [0, 360],
@@ -115,7 +105,7 @@ export default function CryptoVCLanding() {
                   delay: i * 0.2,
                 }}
                 style={{
-                  borderColor: i % 3 === 0 ? 'rgba(59, 130, 246, 0.2)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.2)' : 'rgba(16, 185, 129, 0.2)',
+                  borderColor: i % 3 === 0 ? 'rgba(59, 130, 246, 0.4)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.4)' : 'rgba(16, 185, 129, 0.4)',
                 }}
               />
             ))}
@@ -131,35 +121,48 @@ export default function CryptoVCLanding() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0">
               Blockchain is
               <br />
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
-                the future.
-              </span>
+               <span className="text-white">
+                 the future.
+               </span>
             </h1>
           </motion.div>
           
           <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 sm:px-0">
+             <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 max-w-3xl mx-auto px-4 sm:px-0">
               I believe wholeheartedly in Bitcoin and blockchain technology. 
               Investing in the decentralized revolution that will reshape our world.
             </p>
           </AnimatedText>
           
           <AnimatedText variant="fadeUp" delay={0.6} duration={0.8}>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4 sm:px-0">
-              <motion.button 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-xl hover:shadow-blue-500/25 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center items-center px-4 sm:px-0 mt-4">
+              {/* Investment Stats */}
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                Explore Portfolio
-              </motion.button>
-              <motion.button 
-                className="border border-gray-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">4</div>
+                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Core Assets</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                Learn More
-              </motion.button>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">10+</div>
+                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Years Horizon</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">100%</div>
+                <div className="text-sm sm:text-base text-white/70 uppercase tracking-wider">Conviction</div>
+              </motion.div>
             </div>
           </AnimatedText>
         </div>
@@ -169,7 +172,7 @@ export default function CryptoVCLanding() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown className="w-8 h-8 text-gray-400" />
+           <ChevronDown className="w-8 h-8 text-white" />
         </motion.div>
       </section>
 
@@ -184,15 +187,15 @@ export default function CryptoVCLanding() {
           className="absolute inset-0 opacity-15"
           style={{
             background: `
-              radial-gradient(ellipse at ${50 + mousePosition.x * 2}% ${20 + mousePosition.y * 2}%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
-              radial-gradient(ellipse at ${20 + mousePosition.x * 2}% ${80 + mousePosition.y * 2}%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)
+              radial-gradient(ellipse at 50% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)
             `,
             y: useTransform(springScrollProgress, [0, 1], [0, -30]),
           }}
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="mb-12 sm:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -207,11 +210,11 @@ export default function CryptoVCLanding() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-12"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mb-12"></div>
             </motion.div>
           </div>
 
-          <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed">
+          <div className="w-full space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed">
             <AnimatedText variant="slideRight" delay={0.3}>
               <p>
                 <span className="text-white font-semibold">My core belief:</span>
@@ -245,8 +248,8 @@ export default function CryptoVCLanding() {
         speed={0.12}
         enableBackgroundAnimation={true}
         backgroundGradient={`
-          radial-gradient(ellipse at ${40 + mousePosition.x * 3}% ${60 + mousePosition.y * 3}%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-          radial-gradient(ellipse at ${80 + mousePosition.x * 2}% ${20 + mousePosition.y * 4}%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)
+          radial-gradient(ellipse at 40% 60%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -262,37 +265,37 @@ export default function CryptoVCLanding() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-blue-400">
+                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-white">
                   My Investment Framework
                 </h3>
                 <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-blue-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
-                    <span className="text-xs sm:text-sm font-bold">1</span>
+                  <div className="bg-gray-800 border border-gray-600 rounded-lg w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold text-white">1</span>
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Bitcoin-First Conviction</h4>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Every investment must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Every investment must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-purple-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
-                    <span className="text-xs sm:text-sm font-bold">2</span>
+                  <div className="bg-gray-800 border border-gray-600 rounded-lg w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold text-white">2</span>
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Protocol-Level Innovation</h4>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Focus on foundational blockchain infrastructure that enables the next wave of decentralized applications.</p>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Focus on foundational blockchain infrastructure that enables the next wave of decentralized applications.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-emerald-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
-                    <span className="text-xs sm:text-sm font-bold">3</span>
+                  <div className="bg-gray-800 border border-gray-600 rounded-lg w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold text-white">3</span>
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Long-Term Value Creation</h4>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Patient capital deployment with conviction-based holding periods, not short-term speculation.</p>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Patient capital deployment with conviction-based holding periods, not short-term speculation.</p>
                   </div>
                 </div>
               </div>
@@ -313,20 +316,20 @@ export default function CryptoVCLanding() {
                 >
                   <div className="space-y-3 sm:space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Core Assets</span>
-                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">BTC, ETH, BNB</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Core Assets</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">BTC, ETH, BNB</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Investment Thesis</span>
-                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Bitcoin Maximalist</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Investment Thesis</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Bitcoin Maximalist</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Time Horizon</span>
-                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">10+ years</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Time Horizon</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">10+ years</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Conviction Level</span>
-                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maximum</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Conviction Level</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maximum</span>
                     </div>
                   </div>
                 </motion.div>
@@ -343,8 +346,8 @@ export default function CryptoVCLanding() {
         speed={0.08}
         enableBackgroundAnimation={true}
         backgroundGradient={`
-          radial-gradient(ellipse at ${60 + mousePosition.x * 3}% ${40 + mousePosition.y * 4}%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-          radial-gradient(ellipse at ${30 + mousePosition.x * 4}% ${70 + mousePosition.y * 3}%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
+          radial-gradient(ellipse at 60% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 30% 70%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -384,8 +387,8 @@ export default function CryptoVCLanding() {
                       style={{
                         filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))"
                       }}
-                    >
-                      <Image
+        >
+          <Image
                         src={asset.logo}
                         alt={`${asset.name} logo`}
                         fill
@@ -397,11 +400,11 @@ export default function CryptoVCLanding() {
 
                   <div className="flex items-center mb-3 sm:mb-4 mt-8 sm:mt-4">
                     <div className="w-full text-center sm:text-left sm:ml-10 md:ml-12">
-                      <h4 className="text-lg sm:text-xl md:text-2xl font-semibold group-hover:text-blue-400 transition-colors">{asset.name}</h4>
-                      <p className="text-gray-400 text-xs sm:text-sm">{asset.description}</p>
+                       <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white transition-colors">{asset.name}</h4>
+                       <p className="text-white text-xs sm:text-sm">{asset.description}</p>
                     </div>
                   </div>
-                  <div className="text-gray-300 text-xs sm:text-sm text-center sm:text-left sm:ml-10 md:ml-12">
+                   <div className="text-white text-xs sm:text-sm text-center sm:text-left sm:ml-10 md:ml-12">
                     Long-term conviction hold
                   </div>
                 </motion.div>
@@ -417,11 +420,11 @@ export default function CryptoVCLanding() {
       <footer className="relative py-16 border-t border-gray-800 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col items-center">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-8">
+             <div className="text-2xl font-bold text-white mb-8">
               Dany Capital
             </div>
           </div>
-          <div className="text-center text-gray-500 mt-8 pt-8 border-t border-gray-800">
+           <div className="text-center text-white mt-8 pt-8 border-t border-gray-800">
             © 2024 Dany Capital. All rights reserved.
           </div>
         </div>
