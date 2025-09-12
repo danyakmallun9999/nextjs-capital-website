@@ -1,102 +1,430 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import { AnimatedBackground } from './components/AnimatedBackground';
+import { ParallaxSection } from './components/ParallaxSection';
+import { AnimatedText } from './components/AnimatedText';
+
+export default function CryptoVCLanding() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  const { scrollYProgress } = useScroll();
+  const springScrollProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1
+      });
+    };
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const portfolioAssets = [
+    { name: 'Bitcoin', symbol: 'BTC', description: 'Digital Gold & Store of Value', logo: '/images/bitcoin-btc-logo.png' },
+    { name: 'Ethereum', symbol: 'ETH', description: 'Smart Contract Platform', logo: '/images/ethereum-eth-logo.png' },
+    { name: 'BNB', symbol: 'BNB', description: 'Binance Ecosystem Token', logo: '/images/bnb-bnb-logo.png' },
+    { name: 'Story Protocol', symbol: 'STORY', description: 'IP Infrastructure Layer', logo: '/images/story-protocol.png' }
+  ];
+
+
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <AnimatedBackground mousePosition={mousePosition} />
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 pt-4 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/80 backdrop-blur-md border-b border-gray-800/50' 
+          : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Dany Capital
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#about" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">About</a>
+              <a href="#investment" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">Investment</a>
+              <a href="#portfolio" className="text-lg hover:text-blue-400 transition-colors smooth-scroll">Portfolio</a>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <button 
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-black/90 backdrop-blur-md border-b border-gray-800/50">
+            <div className="px-6 py-6 space-y-6">
+              <a href="#about" className="block text-lg hover:text-blue-400 smooth-scroll">About</a>
+              <a href="#investment" className="block text-lg hover:text-blue-400 smooth-scroll">Investment</a>
+              <a href="#portfolio" className="block text-lg hover:text-blue-400 smooth-scroll">Portfolio</a>
+            </div>
+        </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center">
+        {/* Enhanced Ripple Effect */}
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            y: useTransform(springScrollProgress, [0, 1], [0, -100]),
+            scale: useTransform(springScrollProgress, [0, 1], [1, 1.05]),
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="relative w-96 h-96">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute inset-0 border border-white/10 rounded-full"
+                animate={{
+                  scale: [1 + i * 0.15, 1.2 + i * 0.15, 1 + i * 0.15],
+                  rotate: [0, 360],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 4 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.2,
+                }}
+                style={{
+                  borderColor: i % 3 === 0 ? 'rgba(59, 130, 246, 0.2)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.2)' : 'rgba(16, 185, 129, 0.2)',
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight px-4 sm:px-0">
+              Blockchain is
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
+                the future.
+              </span>
+            </h1>
+          </motion.div>
+          
+          <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 sm:px-0">
+              I believe wholeheartedly in Bitcoin and blockchain technology. 
+              Investing in the decentralized revolution that will reshape our world.
+            </p>
+          </AnimatedText>
+          
+          <AnimatedText variant="fadeUp" delay={0.6} duration={0.8}>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4 sm:px-0">
+              <motion.button 
+                className="bg-gradient-to-r from-blue-500 to-purple-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:shadow-xl hover:shadow-blue-500/25 transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Explore Portfolio
+              </motion.button>
+              <motion.button 
+                className="border border-gray-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10 transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Learn More
+              </motion.button>
+            </div>
+          </AnimatedText>
+        </div>
+
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          <ChevronDown className="w-8 h-8 text-gray-400" />
+        </motion.div>
+      </section>
+
+
+      {/* Philosophy Section */}
+      <section 
+        id="about" 
+        className="py-32 relative overflow-hidden"
+      >
+        {/* Background Animation Layer */}
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: `
+              radial-gradient(ellipse at ${50 + mousePosition.x * 2}% ${20 + mousePosition.y * 2}%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
+              radial-gradient(ellipse at ${20 + mousePosition.x * 2}% ${80 + mousePosition.y * 2}%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)
+            `,
+            y: useTransform(springScrollProgress, [0, 1], [0, -30]),
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">Philosophy</h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-12"></div>
+            </motion.div>
+          </div>
+
+          <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed">
+            <AnimatedText variant="slideRight" delay={0.3}>
+              <p>
+                <span className="text-white font-semibold">My core belief:</span>
+                <br />
+                Bitcoin represents the greatest monetary revolution in human history.
+                Blockchain technology isn&apos;t just an innovation—it&apos;s the foundation
+                of a new economic paradigm. I&apos;ve dedicated my capital and conviction
+                to supporting projects that accelerate this inevitable transition
+                from centralized control to decentralized freedom.
+              </p>
+            </AnimatedText>
+            
+            <AnimatedText variant="slideLeft" delay={0.4}>
+              <p>
+                Every investment decision I make is rooted in one fundamental truth:
+                decentralized systems will inevitably replace centralized ones.
+                My portfolio focuses on Bitcoin, Ethereum, BNB, and Story Protocol—
+                each representing a critical piece of the decentralized future.
+                This isn&apos;t speculation; it&apos;s conviction backed by capital.
+              </p>
+            </AnimatedText>
+          </div>
+        </div>
+      </section>
+
+
+      {/* My Investment Approach Section */}
+      <ParallaxSection 
+        id="investment"
+        className="py-32"
+        speed={0.12}
+        enableBackgroundAnimation={true}
+        backgroundGradient={`
+          radial-gradient(ellipse at ${40 + mousePosition.x * 3}% ${60 + mousePosition.y * 3}%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at ${80 + mousePosition.x * 2}% ${20 + mousePosition.y * 4}%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)
+        `}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <AnimatedText variant="fadeUp" delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 sm:mb-20">My Investment Approach</h2>
+          </AnimatedText>
+          
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-blue-400">
+                  My Investment Framework
+                </h3>
+                <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-blue-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Bitcoin-First Conviction</h4>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Every investment must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-purple-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Protocol-Level Innovation</h4>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Focus on foundational blockchain infrastructure that enables the next wave of decentralized applications.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-emerald-500 rounded-full p-2 sm:p-3 mt-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Long-Term Value Creation</h4>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-300">Patient capital deployment with conviction-based holding periods, not short-term speculation.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="relative mt-8 md:mt-0">
+                <motion.div 
+                  className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 p-4 sm:p-6 md:p-8 rounded-2xl border border-gray-700"
+                  whileHover={{ scale: 1.02, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Core Assets</span>
+                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">BTC, ETH, BNB</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Investment Thesis</span>
+                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Bitcoin Maximalist</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Time Horizon</span>
+                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">10+ years</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm sm:text-base md:text-lg text-gray-400">Conviction Level</span>
+                      <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maximum</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </ParallaxSection>
+
+      {/* Portfolio Section */}
+      <ParallaxSection 
+        id="portfolio" 
+        className="py-32 bg-gray-900/30"
+        speed={0.08}
+        enableBackgroundAnimation={true}
+        backgroundGradient={`
+          radial-gradient(ellipse at ${60 + mousePosition.x * 3}% ${40 + mousePosition.y * 4}%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at ${30 + mousePosition.x * 4}% ${70 + mousePosition.y * 3}%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
+        `}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <AnimatedText variant="fadeUp" delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 sm:mb-20">My Holdings</h2>
+          </AnimatedText>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 pt-4 sm:pt-8">
+            {portfolioAssets.map((asset, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <motion.div 
+                  className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 sm:p-6 md:p-8 group cursor-pointer relative"
+                  whileHover={{ 
+                    scale: 1.02,
+                    borderColor: "rgba(59, 130, 246, 0.5)",
+                    y: -5
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Logo floating above card - centered on mobile, left on desktop */}
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 sm:-top-6 sm:left-auto sm:transform-none sm:-left-6 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 z-50">
+                    <motion.div
+                      className="relative w-full h-full bg-black/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-1 sm:p-2 border border-gray-600/50 shadow-2xl"
+                      whileHover={{ 
+                        scale: 1.15, 
+                        rotate: 8,
+                        y: -4,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8)"
+                      }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))"
+                      }}
+                    >
+                      <Image
+                        src={asset.logo}
+                        alt={`${asset.name} logo`}
+                        fill
+                        className="object-contain p-0.5 sm:p-1"
+                        sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 96px"
+                      />
+                    </motion.div>
+                  </div>
+
+                  <div className="flex items-center mb-3 sm:mb-4 mt-8 sm:mt-4">
+                    <div className="w-full text-center sm:text-left sm:ml-10 md:ml-12">
+                      <h4 className="text-lg sm:text-xl md:text-2xl font-semibold group-hover:text-blue-400 transition-colors">{asset.name}</h4>
+                      <p className="text-gray-400 text-xs sm:text-sm">{asset.description}</p>
+                    </div>
+                  </div>
+                  <div className="text-gray-300 text-xs sm:text-sm text-center sm:text-left sm:ml-10 md:ml-12">
+                    Long-term conviction hold
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </ParallaxSection>
+
+
+      {/* Footer */}
+      <footer className="relative py-16 border-t border-gray-800 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-8">
+              Dany Capital
+            </div>
+          </div>
+          <div className="text-center text-gray-500 mt-8 pt-8 border-t border-gray-800">
+            © 2024 Dany Capital. All rights reserved.
+          </div>
+        </div>
       </footer>
     </div>
   );
