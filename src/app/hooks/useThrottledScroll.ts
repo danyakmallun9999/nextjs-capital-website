@@ -4,7 +4,7 @@ import { useCallback, useRef } from 'react';
 
 export function useThrottledScroll(callback: () => void, delay: number = 16) {
   const lastCall = useRef<number>(0);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const throttledCallback = useCallback(() => {
     const now = Date.now();
