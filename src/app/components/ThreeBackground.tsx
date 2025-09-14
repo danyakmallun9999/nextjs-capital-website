@@ -6,7 +6,6 @@ import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { useDeviceDetection } from '../hooks/useDeviceDetection';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
-import { useResponsiveConfig } from '../hooks/useResponsiveConfig';
 
 // Optimized Particles with Performance Scaling
 function ElegantParticles({ count = 300, isLowEnd = false, shouldReduceAnimations = false }) {
@@ -175,11 +174,10 @@ function ElegantGrid({ isLowEnd = false, shouldReduceAnimations = false }) {
 }
 
 // Main Scene Component
-function Scene({ scrollProgress, isLowEnd, shouldReduceAnimations, particleCount }: { 
+function Scene({ scrollProgress, isLowEnd, shouldReduceAnimations }: { 
   scrollProgress: number; 
   isLowEnd: boolean; 
   shouldReduceAnimations: boolean; 
-  particleCount: number;
 }) {
   const { camera } = useThree();
   const sceneRef = useRef<THREE.Group>(null);
@@ -210,7 +208,7 @@ function Scene({ scrollProgress, isLowEnd, shouldReduceAnimations, particleCount
       
       {/* Minimal 3D Elements */}
       <ElegantParticles 
-        count={particleCount} 
+        count={isLowEnd ? 100 : 200} 
         isLowEnd={isLowEnd} 
         shouldReduceAnimations={shouldReduceAnimations} 
       />
@@ -247,7 +245,6 @@ export default function ThreeBackground() {
   const [scrollProgress, setScrollProgress] = React.useState(0);
   const deviceInfo = useDeviceDetection();
   const performanceMetrics = usePerformanceMonitor();
-  const responsiveConfig = useResponsiveConfig();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -262,17 +259,10 @@ export default function ThreeBackground() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Check if it's a modern iPhone/iPad
-  const isModernIOS = typeof window !== 'undefined' && (
-    (/iPhone1[2-9]/.test(navigator.userAgent)) ||  // iPhone 12+
-    (/iPad/.test(navigator.userAgent) && /Version\/1[4-9]/.test(navigator.userAgent))
-  );
-
   // Use fallback for unsupported or very low-end devices
-  // BUT allow modern iOS devices even if they're marked as "low-end"
   if (!deviceInfo.supportsWebGL || 
       deviceInfo.hasReducedMotion || 
-      (deviceInfo.isLowEnd && !isModernIOS && deviceInfo.connectionSpeed === 'slow')) {
+      (deviceInfo.isLowEnd && deviceInfo.connectionSpeed === 'slow')) {
     return <FallbackBackground />;
   }
 
@@ -293,7 +283,6 @@ export default function ThreeBackground() {
             scrollProgress={scrollProgress} 
             isLowEnd={deviceInfo.isLowEnd}
             shouldReduceAnimations={performanceMetrics.shouldReduceAnimations}
-            particleCount={responsiveConfig.particleCount}
           />
         </Canvas>
       </Suspense>
