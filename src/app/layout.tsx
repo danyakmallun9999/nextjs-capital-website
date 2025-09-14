@@ -112,9 +112,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/dany.png" sizes="32x32" />
+        <link rel="icon" href="/dany.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/dany.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#3b82f6" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
