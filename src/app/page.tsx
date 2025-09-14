@@ -238,7 +238,7 @@ export default function CryptoVCLanding() {
           <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
              <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-left sm:text-center max-w-none sm:max-w-3xl mx-0 sm:mx-auto px-4 sm:px-0">
               I believe wholeheartedly in Bitcoin and blockchain technology. 
-              Investing in the decentralized revolution that will reshape our world.
+              Investing my personal money in the decentralized revolution that will reshape our world.
             </p>
           </AnimatedText>
           
@@ -312,8 +312,8 @@ export default function CryptoVCLanding() {
                 <br />
                 Bitcoin represents the greatest monetary revolution in human history.
                 Blockchain technology isn&apos;t just an innovation—it&apos;s the foundation
-                of a new economic paradigm. I&apos;ve dedicated my capital and conviction
-                to supporting projects that accelerate this inevitable transition
+                of a new economic paradigm. I&apos;ve dedicated my personal capital and conviction
+                to investing in crypto assets that accelerate this inevitable transition
                 from centralized control to decentralized freedom.
               </p>
             </AnimatedText>
@@ -322,9 +322,9 @@ export default function CryptoVCLanding() {
               <p>
                 Every investment decision I make is rooted in one fundamental truth:
                 decentralized systems will inevitably replace centralized ones.
-                My portfolio focuses on Bitcoin, Ethereum, BNB, and Story Protocol—
+                My personal portfolio focuses on Bitcoin, Ethereum, BNB, and Story Protocol—
                 each representing a critical piece of the decentralized future.
-                This isn&apos;t speculation; it&apos;s conviction backed by capital.
+                This isn&apos;t speculation; it&apos;s conviction backed by my personal capital.
               </p>
             </AnimatedText>
           </div>
@@ -357,7 +357,7 @@ export default function CryptoVCLanding() {
             >
               <div>
                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-white">
-                  My Investment Framework
+                  My Personal Investment Framework
                 </h3>
                 <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start space-x-3 sm:space-x-4">
@@ -366,7 +366,7 @@ export default function CryptoVCLanding() {
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Bitcoin-First Conviction</h4>
-                     <p className="text-sm sm:text-base md:text-lg text-white">Every investment must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Every personal investment I make must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
                   </div>
                 </div>
                 
@@ -386,7 +386,7 @@ export default function CryptoVCLanding() {
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Long-Term Value Creation</h4>
-                     <p className="text-sm sm:text-base md:text-lg text-white">Patient capital deployment with conviction-based holding periods, not short-term speculation.</p>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Patient deployment of personal capital with conviction-based holding periods, not short-term speculation.</p>
                   </div>
                 </div>
               </div>
