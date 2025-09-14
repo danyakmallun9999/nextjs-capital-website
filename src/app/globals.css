@@ -37,3 +37,119 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize for low-end devices */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+}
+
+/* Laptop-specific optimizations (1024-1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .laptop-text-scale {
+    font-size: 0.75em !important;
+    transform: scale(0.85);
+  }
+  
+  .laptop-spacing {
+    padding: 0.7em;
+    margin: 0.7em;
+  }
+  
+  .laptop-container {
+    max-width: 85vw !important;
+    padding: 1rem 2rem;
+  }
+  
+  /* Hero specific scaling for laptops */
+  .hero-title.laptop-text-scale {
+    font-size: clamp(1.8rem, 3.5vw, 3rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hero-subtitle.laptop-text-scale {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* Better responsive typography for laptops */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  /* Hero title - smaller for laptops */
+  h1 { font-size: clamp(2rem, 4vw, 3.5rem) !important; }
+  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem) !important; }
+  h3 { font-size: clamp(1.5rem, 2.5vw, 2rem) !important; }
+  p { font-size: clamp(0.9rem, 1.25vw, 1.125rem) !important; }
+  
+  /* Reduce line height for better spacing */
+  .hero-title { line-height: 1.1 !important; }
+  .hero-subtitle { line-height: 1.4 !important; }
+  
+  /* Container max width */
+  .laptop-container { max-width: 85vw !important; }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  h1 { font-size: clamp(2.5rem, 4.5vw, 4rem) !important; }
+  h2 { font-size: clamp(2rem, 3.5vw, 3rem) !important; }
+  h3 { font-size: clamp(1.75rem, 3vw, 2.5rem) !important; }
+  p { font-size: clamp(1rem, 1.5vw, 1.25rem) !important; }
+  
+  .hero-title { line-height: 1.15 !important; }
+  .hero-subtitle { line-height: 1.5 !important; }
+}
+
+/* Optimize background gradients for better performance */
+.optimized-gradient {
+  background-attachment: fixed;
+  will-change: background-position;
+}
+
+/* Lazy loading optimization */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+/* Smooth scrolling improvements */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smooth-scroll {
+    scroll-behavior: auto;
+  }
+}

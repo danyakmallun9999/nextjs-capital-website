@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { useDeviceDetection } from '../hooks/useDeviceDetection';
 
 interface AnimatedTextProps {
   children: ReactNode;
@@ -17,34 +18,37 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   variant = 'fadeUp',
   delay = 0,
 }) => {
-  // Get initial values based on variant
+  const deviceInfo = useDeviceDetection();
+
+  // Get initial values based on variant and device capabilities
   const getInitialValues = () => {
-    switch (variant) {
-      case 'fadeUp':
-        return { opacity: 0, y: 20 };
-      case 'slideLeft':
-        return { opacity: 0, x: -30 };
-      case 'slideRight':
-        return { opacity: 0, x: 30 };
-      case 'scale':
-        return { opacity: 0, scale: 0.98 };
-      case 'rotate':
-        return { opacity: 0, rotate: -3 };
-      default:
-        return { opacity: 0, y: 20 };
-    }
+    const baseValues = {
+      fadeUp: { opacity: 0, y: deviceInfo.isLowEnd ? 10 : 20 },
+      slideLeft: { opacity: 0, x: deviceInfo.isLowEnd ? -15 : -30 },
+      slideRight: { opacity: 0, x: deviceInfo.isLowEnd ? 15 : 30 },
+      scale: { opacity: 0, scale: deviceInfo.isLowEnd ? 0.99 : 0.98 },
+      rotate: { opacity: 0, rotate: deviceInfo.isLowEnd ? -1 : -3 },
+    };
+    
+    return baseValues[variant] || baseValues.fadeUp;
   };
+
+  // Skip animations if reduced motion is preferred
+  if (deviceInfo.hasReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
       className={className}
       initial={getInitialValues()}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1, rotate: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: deviceInfo.isLowEnd ? 0.1 : 0.3 }}
       transition={{
-        duration: 0.5,
-        delay,
-        ease: "easeOut",
+        duration: deviceInfo.isLowEnd ? 0.3 : 0.5,
+        delay: deviceInfo.isLowEnd ? delay * 0.5 : delay,
+        ease: deviceInfo.isLowEnd ? "easeOut" : "easeOut",
+        type: deviceInfo.isLowEnd ? "tween" : "spring",
       }}
     >
       {children}

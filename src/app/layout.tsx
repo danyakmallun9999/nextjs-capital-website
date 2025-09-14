@@ -17,12 +17,29 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/dany.png', sizes: '32x32', type: 'image/png' },
-      { url: '/dany.png', sizes: '16x16', type: 'image/png' }
+      { url: '/dany.png', sizes: '16x16', type: 'image/png' },
+      { url: '/dany.png', sizes: '48x48', type: 'image/png' }
     ],
     apple: [
-      { url: '/dany.png', sizes: '180x180', type: 'image/png' }
+      { url: '/dany.png', sizes: '180x180', type: 'image/png' },
+      { url: '/dany.png', sizes: '152x152', type: 'image/png' },
+      { url: '/dany.png', sizes: '120x120', type: 'image/png' }
     ],
-    shortcut: '/dany.png'
+    shortcut: [
+      { url: '/dany.png', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'icon',
+        url: '/dany.png',
+        type: 'image/png',
+      },
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/dany.png',
+        type: 'image/png',
+      }
+    ]
   },
   description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
   keywords: [
@@ -122,6 +139,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Explicit favicon links to ensure dany.png is used */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/dany.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/dany.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/dany.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/dany.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/dany.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/dany.png" />
+        <link rel="shortcut icon" href="/dany.png" type="image/png" />
+        
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#3b82f6" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
