@@ -1,47 +1,19 @@
 'use client';
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { motion, useScroll, useTransform, useSpring, MotionConfig } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import ThreeBackground from './components/ThreeBackground';
 import { ParallaxSection } from './components/ParallaxSection';
 import { AnimatedText } from './components/AnimatedText';
-import { useDeviceDetection } from './hooks/useDeviceDetection';
-import { usePerformanceMonitor } from './hooks/usePerformanceMonitor';
-
-// Lazy load heavy 3D component
-const ThreeBackground = lazy(() => import('./components/ThreeBackground'));
-
-// Simple Fallback Background for low-end devices
-function SimpleFallbackBackground() {
-  return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
-      <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-emerald-900/20" />
-    </div>
-  );
-}
 
 export default function CryptoVCLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  const deviceInfo = useDeviceDetection();
-  const performanceMetrics = usePerformanceMonitor();
-  
   const { scrollYProgress } = useScroll();
-  const springScrollProgress = useSpring(scrollYProgress, { 
-    stiffness: deviceInfo.isLowEnd ? 50 : 100, 
-    damping: deviceInfo.isLowEnd ? 20 : 30 
-  });
-
-  // Pre-calculate all transforms to avoid conditional hook calls
-  const heroYTransform = useTransform(springScrollProgress, [0, 1], [0, -100]);
-  const heroYTransformLowEnd = useTransform(springScrollProgress, [0, 1], [0, -50]);
-  const heroScaleTransform = useTransform(springScrollProgress, [0, 1], [1, 1.05]);
-  const heroScaleTransformLowEnd = useTransform(springScrollProgress, [0, 1], [1, 1.02]);
-  const auroraYTransform = useTransform(springScrollProgress, [0, 1], [0, -80]);
-  const auroraScaleTransform = useTransform(springScrollProgress, [0, 1], [1, 1.1]);
-  const philosophyYTransform = useTransform(springScrollProgress, [0, 1], [0, -30]);
+  const springScrollProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,30 +36,9 @@ export default function CryptoVCLanding() {
 
 
 
-  // Determine motion configuration based on device capabilities
-  const motionConfig = {
-    transition: deviceInfo.isLowEnd ? {
-      type: "tween" as const,
-      duration: 0.3,
-    } : {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 30,
-    },
-    reducedMotion: deviceInfo.hasReducedMotion ? "always" as const : "never" as const,
-  };
-
   return (
-    <MotionConfig {...motionConfig}>
-      <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-        {/* Conditional 3D Background Rendering */}
-        {deviceInfo.supportsWebGL && !deviceInfo.hasReducedMotion && !performanceMetrics.shouldReduceAnimations ? (
-          <Suspense fallback={<SimpleFallbackBackground />}>
-            <ThreeBackground />
-          </Suspense>
-        ) : (
-          <SimpleFallbackBackground />
-        )}
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      <ThreeBackground />
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 pt-4 transition-all duration-300 border-b ${
         isScrolled 
@@ -129,50 +80,46 @@ export default function CryptoVCLanding() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center">
-        {/* Enhanced Ripple Effect - Simplified for low-end devices */}
-        {!deviceInfo.hasReducedMotion && (
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              y: deviceInfo.isLowEnd ? heroYTransformLowEnd : heroYTransform,
-              scale: deviceInfo.isLowEnd ? heroScaleTransformLowEnd : heroScaleTransform,
-            }}
-          >
-            <div className="relative w-96 h-96">
-              {[...Array(deviceInfo.isLowEnd ? 4 : 8)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute inset-0 border rounded-full"
-                  animate={deviceInfo.isLowEnd ? {} : {
-                    scale: [1 + i * 0.15, 1.2 + i * 0.15, 1 + i * 0.15],
-                    rotate: [0, 360],
-                    opacity: [0.1, 0.3, 0.1],
-                  }}
-                  transition={deviceInfo.isLowEnd ? {} : {
-                    duration: 4 + i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.2,
-                  }}
-                  style={{
-                    borderColor: i % 3 === 0 ? 'rgba(59, 130, 246, 0.4)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.4)' : 'rgba(16, 185, 129, 0.4)',
-                    opacity: deviceInfo.isLowEnd ? 0.2 : undefined,
-                  }}
-                />
-              ))}
-            </div>
-          </motion.div>
-        )}
+        {/* Enhanced Ripple Effect */}
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            y: useTransform(springScrollProgress, [0, 1], [0, -100]),
+            scale: useTransform(springScrollProgress, [0, 1], [1, 1.05]),
+          }}
+        >
+          <div className="relative w-96 h-96">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute inset-0 border rounded-full"
+                animate={{
+                  scale: [1 + i * 0.15, 1.2 + i * 0.15, 1 + i * 0.15],
+                  rotate: [0, 360],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 4 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.2,
+                }}
+                style={{
+                  borderColor: i % 3 === 0 ? 'rgba(59, 130, 246, 0.4)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.4)' : 'rgba(16, 185, 129, 0.4)',
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
 
-        {/* Aurora Nebula Background - Skip on low-end devices */}
-        {!deviceInfo.isLowEnd && !deviceInfo.hasReducedMotion && (
-          <motion.div 
-            className="hidden sm:flex absolute inset-0 items-center justify-center pointer-events-none"
-            style={{
-              y: auroraYTransform,
-              scale: auroraScaleTransform,
-            }}
-          >
+        {/* Aurora Nebula Background */}
+        <motion.div 
+          className="hidden sm:flex absolute inset-0 items-center justify-center pointer-events-none"
+          style={{
+            y: useTransform(springScrollProgress, [0, 1], [0, -80]),
+            scale: useTransform(springScrollProgress, [0, 1], [1, 1.1]),
+          }}
+        >
           <div className="relative w-[800px] h-[800px]">
             {/* Aurora Nebula Layers */}
             {[...Array(6)].map((_, i) => (
@@ -272,13 +219,12 @@ export default function CryptoVCLanding() {
             </motion.div>
           </div>
         </motion.div>
-        )}
 
         <div className="relative z-10 text-center sm:text-center w-full sm:max-w-6xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: deviceInfo.isLowEnd ? 20 : 50 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: deviceInfo.isLowEnd ? 0.5 : 0.8, delay: deviceInfo.isLowEnd ? 0.1 : 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight text-left sm:text-center px-4 sm:px-0">
               Blockchain is
@@ -289,14 +235,14 @@ export default function CryptoVCLanding() {
             </h1>
           </motion.div>
           
-          <AnimatedText variant="fadeUp" delay={deviceInfo.isLowEnd ? 0.2 : 0.4} duration={deviceInfo.isLowEnd ? 0.5 : 0.8}>
+          <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
              <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-left sm:text-center max-w-none sm:max-w-3xl mx-0 sm:mx-auto px-4 sm:px-0">
               I believe wholeheartedly in Bitcoin and blockchain technology. 
               Investing my personal money in the decentralized revolution that will reshape our world.
             </p>
           </AnimatedText>
           
-          <AnimatedText variant="fadeUp" delay={deviceInfo.isLowEnd ? 0.3 : 0.6} duration={deviceInfo.isLowEnd ? 0.5 : 0.8}>
+          <AnimatedText variant="fadeUp" delay={0.6} duration={0.8}>
             <div className="flex justify-center px-4 sm:px-6 mt-8">
               <motion.div 
                 className="bg-gray-900/50 border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-12 py-4 sm:py-8 backdrop-blur-sm w-full max-w-md sm:max-w-2xl"
@@ -312,15 +258,13 @@ export default function CryptoVCLanding() {
           </AnimatedText>
         </div>
 
-        {!deviceInfo.hasReducedMotion && (
-          <motion.div 
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            animate={deviceInfo.isLowEnd ? {} : { y: [0, 10, 0] }}
-            transition={deviceInfo.isLowEnd ? {} : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-             <ChevronDown className="w-8 h-8 text-white" />
-          </motion.div>
-        )}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+           <ChevronDown className="w-8 h-8 text-white" />
+        </motion.div>
       </section>
 
 
@@ -329,27 +273,25 @@ export default function CryptoVCLanding() {
         id="about" 
         className="py-32 relative overflow-hidden"
       >
-        {/* Background Animation Layer - Simplified for low-end */}
-        {!deviceInfo.hasReducedMotion && (
-          <motion.div
-            className="absolute inset-0 opacity-15"
-            style={{
-              background: `
-                radial-gradient(ellipse at 50% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)
-              `,
-              y: deviceInfo.isLowEnd ? 0 : philosophyYTransform,
-            }}
-          />
-        )}
+        {/* Background Animation Layer */}
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: `
+              radial-gradient(ellipse at 50% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)
+            `,
+            y: useTransform(springScrollProgress, [0, 1], [0, -30]),
+          }}
+        />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <div className="mb-12 sm:mb-16">
             <motion.div
-              initial={{ opacity: 0, y: deviceInfo.isLowEnd ? 15 : 30 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: deviceInfo.isLowEnd ? 0.1 : 0.3 }}
-              transition={{ duration: deviceInfo.isLowEnd ? 0.4 : 0.6, delay: deviceInfo.isLowEnd ? 0.05 : 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">Philosophy</h2>
             </motion.div>
@@ -564,6 +506,5 @@ export default function CryptoVCLanding() {
         </div>
       </footer>
     </div>
-    </MotionConfig>
   );
 }
