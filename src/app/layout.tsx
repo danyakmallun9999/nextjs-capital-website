@@ -14,6 +14,16 @@ export const metadata: Metadata = {
     default: "Dany Capital - Bitcoin & Blockchain Investment",
     template: "%s | Dany Capital"
   },
+  icons: {
+    icon: [
+      { url: '/dany.png', sizes: '32x32', type: 'image/png' },
+      { url: '/dany.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/dany.png', sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: '/dany.png'
+  },
   description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
   keywords: [
     "Dany Capital",
@@ -112,9 +122,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="icon" href="/dany.png" sizes="32x32" />
-        <link rel="icon" href="/dany.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/dany.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#3b82f6" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
