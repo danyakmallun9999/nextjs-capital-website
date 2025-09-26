@@ -1,7 +1,7 @@
 {
-  "name": "Dany Capital - Bitcoin & Blockchain Investment",
+  "name": "Dany Capital - Investasi Bitcoin & Blockchain",
   "short_name": "Dany Capital",
-  "description": "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
+  "description": "Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. Berinvestasi dalam revolusi desentralisasi dengan penempatan modal berbasis keyakinan.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -27,5 +27,5 @@
     }
   ],
   "categories": ["finance", "business"],
-  "lang": "en"
+  "lang": "id"
 }

@@ -11,7 +11,7 @@ const googleSansCode = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://capital.danyakmallun.com'),
   title: {
-    default: "Dany Capital - Bitcoin & Blockchain Investment",
+    default: "Dany Capital - Investasi Bitcoin & Blockchain",
     template: "%s | Dany Capital"
   },
   icons: {
@@ -24,21 +24,22 @@ export const metadata: Metadata = {
     ],
     shortcut: '/dany.png'
   },
-  description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
+  description: "Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. Berinvestasi dalam revolusi desentralisasi dengan penempatan modal berbasis keyakinan.",
   keywords: [
     "Dany Capital",
     "Bitcoin",
     "blockchain",
     "cryptocurrency",
+    "mata uang kripto",
     "BTC",
     "ETH", 
     "BNB",
     "Story Protocol",
-    "investment",
-    "conviction investing",
-    "venture capital",
+    "investasi",
+    "investasi keyakinan",
+    "modal ventura",
     "crypto VC",
-    "decentralized finance",
+    "keuangan terdesentralisasi",
     "DeFi"
   ],
   authors: [{ name: "Dany Capital" }],
@@ -60,21 +61,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://capital.danyakmallun.com",
     siteName: "Dany Capital",
-    title: "Dany Capital - Bitcoin & Blockchain Investment",
-    description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
+    title: "Dany Capital - Investasi Bitcoin & Blockchain",
+    description: "Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. Berinvestasi dalam revolusi desentralisasi dengan penempatan modal berbasis keyakinan.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Dany Capital - Bitcoin & Blockchain Investment",
+        alt: "Dany Capital - Investasi Bitcoin & Blockchain",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dany Capital - Bitcoin & Blockchain Investment",
-    description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
+    title: "Dany Capital - Investasi Bitcoin & Blockchain",
+    description: "Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. Berinvestasi dalam revolusi desentralisasi dengan penempatan modal berbasis keyakinan.",
     images: ["/twitter-image"],
     creator: "@danyakmallun",
     site: "@danyakmallun",
@@ -100,17 +101,17 @@ export default function RootLayout({
     name: "Dany Capital",
     url: "https://capital.danyakmallun.com", // Change to your actual website URL
     logo: "https://capital.danyakmallun.com/images/og-image.png",
-    description: "I believe wholeheartedly in Bitcoin and blockchain technology. Investing in the decentralized revolution with conviction-based capital deployment.",
+    description: "Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. Berinvestasi dalam revolusi desentralisasi dengan penempatan modal berbasis keyakinan.",
     foundingDate: "2024",
-    industry: "Financial Services",
-    speciality: ["Bitcoin Investment", "Blockchain Technology", "Cryptocurrency", "Venture Capital"],
+    industry: "Layanan Keuangan",
+    speciality: ["Investasi Bitcoin", "Teknologi Blockchain", "Mata Uang Kripto", "Modal Ventura"],
     sameAs: [
       "https://twitter.com/danyakmallun",
       "https://linkedin.com/in/danyakmallun"
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "Investment Inquiries",
+      contactType: "Pertanyaan Investasi",
       url: "https://capital.danyakmallun.com" // Change to your actual website URL
     }
   };

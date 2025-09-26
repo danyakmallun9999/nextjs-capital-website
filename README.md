@@ -1,93 +1,93 @@
 # Dany Capital
 
-A sophisticated venture capital landing page focused on cryptocurrency and blockchain investments. Built with Next.js 15, TypeScript, and modern web technologies.
+Halaman landing modal ventura yang canggih dengan fokus pada investasi mata uang kripto dan blockchain. Dibangun dengan Next.js 15, TypeScript, dan teknologi web modern.
 
 ![Dany Capital](https://img.shields.io/badge/Dany-Capital-blue?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.3-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
 
-## 🚀 Overview
+## 🚀 Ringkasan
 
-Dany Capital is a modern, elegant venture capital website specializing in cryptocurrency and blockchain investments. The site features a clean, professional design with sophisticated animations and a focus on Bitcoin and blockchain technology.
+Dany Capital adalah situs web modal ventura yang modern dan elegan yang mengkhususkan diri dalam investasi mata uang kripto dan blockchain. Situs ini menampilkan desain yang bersih dan profesional dengan animasi canggih dan fokus pada Bitcoin serta teknologi blockchain.
 
-### 🎯 Investment Philosophy
-*"Bitcoin is digital gold. Blockchain is the future."*
+### 🎯 Filosofi Investasi
+*"Bitcoin adalah emas digital. Blockchain adalah masa depan."*
 
-## ✨ Features
+## ✨ Fitur
 
-### 🎨 Design & UI/UX
-- **Modern Glassmorphism**: Sophisticated backdrop blur effects
-- **Elegant Typography**: Google Sans Code font with optimal readability
-- **Professional Color Scheme**: Clean white-on-black design
-- **Responsive Design**: Optimized for all devices including iPhone 12 Pro
-- **Static Design**: No distracting hover animations, focused on content
+### 🎨 Desain & UI/UX
+- **Glassmorphism Modern**: Efek blur latar belakang yang canggih
+- **Tipografi Elegan**: Font Google Sans Code dengan keterbacaan optimal
+- **Skema Warna Profesional**: Desain putih-di-hitam yang bersih
+- **Desain Responsif**: Dioptimalkan untuk semua perangkat termasuk iPhone 12 Pro
+- **Desain Statis**: Tanpa animasi hover yang mengganggu, fokus pada konten
 
-### 🌟 Advanced Animations
-- **Three.js Background**: Sophisticated 3D particle systems and geometric elements
-- **Framer Motion**: Smooth scroll-triggered animations
-- **Parallax Effects**: Elegant background movement on scroll
-- **Ripple Effects**: Beautiful concentric circles in hero section
+### 🌟 Animasi Canggih
+- **Latar Belakang Three.js**: Sistem partikel 3D dan elemen geometris yang canggih
+- **Framer Motion**: Animasi scroll yang halus
+- **Efek Parallax**: Pergerakan latar belakang yang elegan saat scroll
+- **Efek Ripple**: Lingkaran konsentris yang indah di bagian hero
 
-### 📱 Responsive Excellence
-- **Mobile-First**: Optimized for iPhone 12 Pro (390px width)
-- **Tablet Ready**: Perfect scaling for iPad and similar devices
-- **Desktop Optimized**: Full utilization of large screen real estate
-- **Cross-Browser**: Compatible with all modern browsers
+### 📱 Keunggulan Responsif
+- **Mobile-First**: Dioptimalkan untuk iPhone 12 Pro (lebar 390px)
+- **Siap Tablet**: Skalabilitas sempurna untuk iPad dan perangkat serupa
+- **Dioptimalkan Desktop**: Pemanfaatan penuh layar besar
+- **Lintas Browser**: Kompatibel dengan semua browser modern
 
-### 🔧 Technical Features
-- **Next.js 15**: Latest App Router with TypeScript
-- **Performance Optimized**: Hardware-accelerated animations
-- **SEO Ready**: Comprehensive metadata and structured data
-- **Accessibility**: High contrast design and smooth scrolling
+### 🔧 Fitur Teknis
+- **Next.js 15**: App Router terbaru dengan TypeScript
+- **Dioptimalkan Performa**: Animasi yang dipercepat perangkat keras
+- **Siap SEO**: Metadata komprehensif dan data terstruktur
+- **Aksesibilitas**: Desain kontras tinggi dan scrolling halus
 
-## 🏗️ Tech Stack
+## 🏗️ Teknologi yang Digunakan
 
-### Core Framework
-- **Next.js 15.5.3** - React framework with App Router
-- **TypeScript** - Type-safe development
-- **React 19** - Latest React features
+### Framework Inti
+- **Next.js 15.5.3** - Framework React dengan App Router
+- **TypeScript** - Pengembangan yang aman tipe
+- **React 19** - Fitur React terbaru
 
-### Styling & Animation
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Advanced animations and transitions
-- **Three.js** - 3D graphics and particle systems
-- **React Three Fiber** - React renderer for Three.js
-- **React Three Drei** - Useful helpers for Three.js
+### Styling & Animasi
+- **Tailwind CSS** - Framework CSS utility-first
+- **Framer Motion** - Animasi dan transisi canggih
+- **Three.js** - Grafik 3D dan sistem partikel
+- **React Three Fiber** - Renderer React untuk Three.js
+- **React Three Drei** - Helper berguna untuk Three.js
 
-### Typography & Icons
-- **Google Fonts** - Google Sans Code for professional typography
-- **Lucide React** - Beautiful, consistent icons
+### Tipografi & Ikon
+- **Google Fonts** - Google Sans Code untuk tipografi profesional
+- **Lucide React** - Ikon yang indah dan konsisten
 
-## 📦 Installation
+## 📦 Instalasi
 
-### Prerequisites
+### Prasyarat
 - Node.js 18+ 
-- npm or yarn package manager
+- npm atau yarn package manager
 
-### Setup
+### Pengaturan
 ```bash
-# Clone the repository
+# Clone repositori
 git clone https://github.com/yourusername/dany-capital.git
 
-# Navigate to project directory
+# Navigasi ke direktori proyek
 cd dany-capital
 
-# Install dependencies
+# Instal dependensi
 npm install
 
-# Start development server
+# Jalankan server pengembangan
 npm run dev
 ```
 
-### Available Scripts
+### Script yang Tersedia
 ```bash
-npm run dev        # Start development server (webpack)
-npm run dev:turbo  # Start development server (turbopack)
-npm run build      # Build for production (webpack)
-npm run build:turbo # Build for production (turbopack)
-npm run start      # Start production server
-npm run lint       # Run ESLint
+npm run dev        # Jalankan server pengembangan (webpack)
+npm run dev:turbo  # Jalankan server pengembangan (turbopack)
+npm run build      # Build untuk produksi (webpack)
+npm run build:turbo # Build untuk produksi (turbopack)
+npm run start      # Jalankan server produksi
+npm run lint       # Jalankan ESLint
 ```
 
 ## 🎨 Design System

@@ -28,10 +28,10 @@ export default function CryptoVCLanding() {
   }, []);
 
   const portfolioAssets = [
-    { name: 'Bitcoin', symbol: 'BTC', description: 'Digital Gold & Store of Value', logo: '/images/bitcoin-btc-logo.png' },
-    { name: 'Ethereum', symbol: 'ETH', description: 'Smart Contract Platform', logo: '/images/ethereum-eth-logo.png' },
-    { name: 'BNB', symbol: 'BNB', description: 'Binance Ecosystem Token', logo: '/images/bnb-bnb-logo.png' },
-    { name: 'Story Protocol', symbol: 'STORY', description: 'IP Infrastructure Layer', logo: '/images/story-protocol.png' }
+    { name: 'Bitcoin', symbol: 'BTC', description: 'Emas Digital & Penyimpan Nilai', logo: '/images/bitcoin-btc-logo.png' },
+    { name: 'Ethereum', symbol: 'ETH', description: 'Platform Kontrak Pintar', logo: '/images/ethereum-eth-logo.png' },
+    { name: 'BNB', symbol: 'BNB', description: 'Token Ekosistem Binance', logo: '/images/bnb-bnb-logo.png' },
+    { name: 'Story Protocol', symbol: 'STORY', description: 'Lapisan Infrastruktur IP', logo: '/images/story-protocol.png' }
   ];
 
 
@@ -52,9 +52,9 @@ export default function CryptoVCLanding() {
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Philosophy</a>
-              <a href="#investment" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Investment</a>
-              <a href="#portfolio" className="text-lg text-white hover:text-white transition-colors smooth-scroll">My Holdings</a>
+              <a href="#about" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Filosofi</a>
+              <a href="#investment" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Investasi</a>
+              <a href="#portfolio" className="text-lg text-white hover:text-white transition-colors smooth-scroll">Portofolio Saya</a>
             </div>
 
             <button 
@@ -70,9 +70,9 @@ export default function CryptoVCLanding() {
         {isMenuOpen && (
           <div className="md:hidden bg-black/90 backdrop-blur-md border-b border-gray-800/50">
             <div className="px-6 py-6 space-y-6">
-               <a href="#about" className="block text-lg text-white hover:text-white smooth-scroll">About</a>
-               <a href="#investment" className="block text-lg text-white hover:text-white smooth-scroll">Investment</a>
-               <a href="#portfolio" className="block text-lg text-white hover:text-white smooth-scroll">Portfolio</a>
+               <a href="#about" className="block text-lg text-white hover:text-white smooth-scroll">Tentang</a>
+               <a href="#investment" className="block text-lg text-white hover:text-white smooth-scroll">Investasi</a>
+               <a href="#portfolio" className="block text-lg text-white hover:text-white smooth-scroll">Portofolio</a>
             </div>
         </div>
         )}
@@ -227,18 +227,18 @@ export default function CryptoVCLanding() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-tight text-left sm:text-center px-4 sm:px-0">
-              Blockchain is
+              Blockchain adalah
               <br />
                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
-                 the future.
+                 masa depan.
                </span>
             </h1>
           </motion.div>
           
           <AnimatedText variant="fadeUp" delay={0.4} duration={0.8}>
              <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 text-left sm:text-center max-w-none sm:max-w-3xl mx-0 sm:mx-auto px-4 sm:px-0">
-              I believe wholeheartedly in Bitcoin and blockchain technology. 
-              Investing my personal money in the decentralized revolution that will reshape our world.
+              Saya percaya sepenuh hati pada Bitcoin dan teknologi blockchain. 
+              Menginvestasikan uang pribadi saya dalam revolusi desentralisasi yang akan mengubah dunia kita.
             </p>
           </AnimatedText>
           
@@ -248,9 +248,9 @@ export default function CryptoVCLanding() {
                 className="bg-gray-900/50 border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-12 py-4 sm:py-8 backdrop-blur-sm w-full max-w-md sm:max-w-2xl"
               >
                 <div className="text-center">
-                  <div className="text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest text-white/60 mb-2 sm:mb-2">Investment Philosophy</div>
+                  <div className="text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest text-white/60 mb-2 sm:mb-2">Filosofi Investasi</div>
                   <div className="text-base sm:text-lg md:text-xl font-normal text-white leading-relaxed px-2 sm:px-0">
-                    &ldquo;Bitcoin is digital gold. Blockchain is the future.&rdquo;
+                    &ldquo;Bitcoin adalah emas digital. Blockchain adalah masa depan.&rdquo;
                   </div>
                 </div>
               </motion.div>
@@ -293,7 +293,7 @@ export default function CryptoVCLanding() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">Philosophy</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">Filosofi</h2>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -308,23 +308,23 @@ export default function CryptoVCLanding() {
           <div className="w-full space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed">
             <AnimatedText variant="slideRight" delay={0.3}>
               <p>
-                <span className="text-white font-semibold">My core belief:</span>
+                <span className="text-white font-semibold">Keyakinan inti saya:</span>
                 <br />
-                Bitcoin represents the greatest monetary revolution in human history.
-                Blockchain technology isn&apos;t just an innovation—it&apos;s the foundation
-                of a new economic paradigm. I&apos;ve dedicated my personal capital and conviction
-                to investing in crypto assets that accelerate this inevitable transition
-                from centralized control to decentralized freedom.
+                Bitcoin mewakili revolusi moneter terbesar dalam sejarah manusia.
+                Teknologi blockchain bukan hanya sebuah inovasi—ini adalah fondasi
+                dari paradigma ekonomi baru. Saya telah mendedikasikan modal pribadi dan keyakinan saya
+                untuk berinvestasi dalam aset kripto yang mempercepat transisi yang tak terhindarkan ini
+                dari kontrol terpusat ke kebebasan terdesentralisasi.
               </p>
             </AnimatedText>
             
             <AnimatedText variant="slideLeft" delay={0.4}>
               <p>
-                Every investment decision I make is rooted in one fundamental truth:
-                decentralized systems will inevitably replace centralized ones.
-                My personal portfolio focuses on Bitcoin, Ethereum, BNB, and Story Protocol—
-                each representing a critical piece of the decentralized future.
-                This isn&apos;t speculation; it&apos;s conviction backed by my personal capital.
+                Setiap keputusan investasi yang saya buat berakar pada satu kebenaran fundamental:
+                sistem terdesentralisasi pasti akan menggantikan sistem terpusat.
+                Portofolio pribadi saya berfokus pada Bitcoin, Ethereum, BNB, dan Story Protocol—
+                masing-masing mewakili bagian penting dari masa depan terdesentralisasi.
+                Ini bukan spekulasi; ini adalah keyakinan yang didukung oleh modal pribadi saya.
               </p>
             </AnimatedText>
           </div>
@@ -345,7 +345,7 @@ export default function CryptoVCLanding() {
       >
         <div className="w-full sm:max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <AnimatedText variant="fadeUp" delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left sm:text-center mb-12 sm:mb-20">My Investment Approach</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left sm:text-center mb-12 sm:mb-20">Pendekatan Investasi Saya</h2>
           </AnimatedText>
           
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
@@ -357,7 +357,7 @@ export default function CryptoVCLanding() {
             >
               <div>
                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-white">
-                  My Personal Investment Framework
+                  Kerangka Investasi Pribadi Saya
                 </h3>
                 <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start space-x-3 sm:space-x-4">
@@ -365,8 +365,8 @@ export default function CryptoVCLanding() {
                     <span className="text-xs sm:text-sm font-bold text-white">1</span>
                   </div>
                   <div>
-                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Bitcoin-First Conviction</h4>
-                     <p className="text-sm sm:text-base md:text-lg text-white">Every personal investment I make must align with the fundamental principles of decentralization and sound money that Bitcoin represents.</p>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Keyakinan Bitcoin Pertama</h4>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Setiap investasi pribadi yang saya lakukan harus sejalan dengan prinsip fundamental desentralisasi dan uang yang sehat yang diwakili Bitcoin.</p>
                   </div>
                 </div>
                 
@@ -375,8 +375,8 @@ export default function CryptoVCLanding() {
                     <span className="text-xs sm:text-sm font-bold text-white">2</span>
                   </div>
                   <div>
-                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Protocol-Level Innovation</h4>
-                     <p className="text-sm sm:text-base md:text-lg text-white">Focus on foundational blockchain infrastructure that enables the next wave of decentralized applications.</p>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Inovasi Tingkat Protokol</h4>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Fokus pada infrastruktur blockchain fundamental yang memungkinkan gelombang aplikasi terdesentralisasi berikutnya.</p>
                   </div>
                 </div>
                 
@@ -385,8 +385,8 @@ export default function CryptoVCLanding() {
                     <span className="text-xs sm:text-sm font-bold text-white">3</span>
                   </div>
                   <div>
-                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Long-Term Value Creation</h4>
-                     <p className="text-sm sm:text-base md:text-lg text-white">Patient deployment of personal capital with conviction-based holding periods, not short-term speculation.</p>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">Penciptaan Nilai Jangka Panjang</h4>
+                     <p className="text-sm sm:text-base md:text-lg text-white">Penempatan modal pribadi yang sabar dengan periode kepemilikan berbasis keyakinan, bukan spekulasi jangka pendek.</p>
                   </div>
                 </div>
               </div>
@@ -405,20 +405,20 @@ export default function CryptoVCLanding() {
                 >
                   <div className="space-y-3 sm:space-y-4">
                     <div className="flex justify-between items-center">
-                       <span className="text-sm sm:text-base md:text-lg text-white">Core Assets</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Aset Inti</span>
                        <span className="text-sm sm:text-base md:text-lg text-white font-semibold">BTC, ETH, BNB</span>
                     </div>
                     <div className="flex justify-between items-center">
-                       <span className="text-sm sm:text-base md:text-lg text-white">Investment Thesis</span>
-                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Bitcoin Maximalist</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Tesis Investasi</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maksimalis Bitcoin</span>
                     </div>
                     <div className="flex justify-between items-center">
-                       <span className="text-sm sm:text-base md:text-lg text-white">Time Horizon</span>
-                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">10+ years</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Jangka Waktu</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">10+ tahun</span>
                     </div>
                     <div className="flex justify-between items-center">
-                       <span className="text-sm sm:text-base md:text-lg text-white">Conviction Level</span>
-                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maximum</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white">Tingkat Keyakinan</span>
+                       <span className="text-sm sm:text-base md:text-lg text-white font-semibold">Maksimum</span>
                     </div>
                   </div>
                 </motion.div>
@@ -441,7 +441,7 @@ export default function CryptoVCLanding() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <AnimatedText variant="fadeUp" delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 sm:mb-20">My Holdings</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 sm:mb-20">Kepemilikan Saya</h2>
           </AnimatedText>
           
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 pt-4 sm:pt-8">
@@ -481,7 +481,7 @@ export default function CryptoVCLanding() {
                     </div>
                   </div>
                    <div className="text-white text-xs sm:text-sm text-center sm:text-left sm:ml-10 md:ml-12">
-                    Long-term conviction hold
+                    Kepemilikan keyakinan jangka panjang
                   </div>
                 </motion.div>
               </motion.div>
